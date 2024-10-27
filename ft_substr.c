@@ -1,50 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merol <merol@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 19:11:04 by merol             #+#    #+#             */
-/*   Updated: 2024/10/26 17:58:44 by merol            ###   ########.fr       */
+/*   Created: 2024/10/26 18:29:58 by merol             #+#    #+#             */
+/*   Updated: 2024/10/27 18:31:44 by merol            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-	int	sign;
-	int	res;
+	size_t strlength;
+	strlength = ft_strlen(s);
+	char *result;
 
+	if (start < 0)
+		start = strlength + start;
+
+	if (start >= strlength)
+		start = len - start;
+
+	result = ft_calloc((len + 1) * sizeof(char));
+	
+	size_t i;
 	i = 0;
-	sign = 1;
-	res = 0;
-	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-')
+	while(i < len)
 	{
-		sign *= -1;
+		result[i] = s[start + i];
 		i++;
 	}
-	else if (str[i] == '+')
-	{
-		sign = 1;
-		i++;
-	}
-	while (str[i] != '\0' || (str[i] >= '0' && str[i] <= '9'))
-	{
-		res = (res * 10) + (str[i] - '0');
-		i++;
-	}
-	return (sign * res);
+	return (result);
+	
 }
 
 // #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char str[] = "-567";
-// 	printf("%d", ft_atoi(str));
+// int main() {
+//     char str[] = "hwllo ,world Ömer Faruk Göregen";
+// 	printf("%s", ft_substr(str, 0, 10));
 // }

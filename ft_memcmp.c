@@ -1,50 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merol <merol@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 19:11:04 by merol             #+#    #+#             */
-/*   Updated: 2024/10/26 17:58:44 by merol            ###   ########.fr       */
+/*   Created: 2024/10/26 16:09:12 by merol             #+#    #+#             */
+/*   Updated: 2024/10/26 16:22:52 by merol            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
-	int	sign;
-	int	res;
+	const unsigned char	*ptr1 = s1;
+	const unsigned char	*ptr2 = s2;
+	size_t				i;
 
 	i = 0;
-	sign = 1;
-	res = 0;
-	while ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-')
+	while (i < n)
 	{
-		sign *= -1;
+		if (ptr1[i] != ptr2[i])
+			return (ptr1[i] - ptr2[i]);
 		i++;
 	}
-	else if (str[i] == '+')
-	{
-		sign = 1;
-		i++;
-	}
-	while (str[i] != '\0' || (str[i] >= '0' && str[i] <= '9'))
-	{
-		res = (res * 10) + (str[i] - '0');
-		i++;
-	}
-	return (sign * res);
+	return (0);
 }
-
 // #include <stdio.h>
-
-// int	main(void)
+// int main()
 // {
-// 	char str[] = "-567";
-// 	printf("%d", ft_atoi(str));
+// 	char str[] = "Je m'apelle Merve!";
+// 	char str2[] = "Bonjour!";
+// 	printf("%d", ft_memcmp(str, str2, 2));
 // }
