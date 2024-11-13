@@ -6,7 +6,7 @@
 /*   By: merol <merol@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 19:11:04 by merol             #+#    #+#             */
-/*   Updated: 2024/10/26 17:58:44 by merol            ###   ########.fr       */
+/*   Updated: 2024/11/13 19:19:23 by merol            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	res;
+	int i;
+	int sign;
+	unsigned long long res;
 
 	i = 0;
 	sign = 1;
@@ -25,7 +25,7 @@ int	ft_atoi(const char *str)
 		i++;
 	if (str[i] == '-')
 	{
-		sign *= -1;
+		sign = -1;
 		i++;
 	}
 	else if (str[i] == '+')
@@ -33,18 +33,10 @@ int	ft_atoi(const char *str)
 		sign = 1;
 		i++;
 	}
-	while (str[i] != '\0' || (str[i] >= '0' && str[i] <= '9'))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = (res * 10) + (str[i] - '0');
 		i++;
 	}
 	return (sign * res);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char str[] = "-567";
-// 	printf("%d", ft_atoi(str));
-// }

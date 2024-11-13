@@ -6,7 +6,7 @@
 /*   By: merol <merol@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 18:29:58 by merol             #+#    #+#             */
-/*   Updated: 2024/10/27 18:31:44 by merol            ###   ########.fr       */
+/*   Updated: 2024/10/29 16:26:21 by merol            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,28 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t strlength;
-	strlength = ft_strlen(s);
-	char *result;
+	char	*subset;
+	size_t	slen;
 
-	if (start < 0)
-		start = strlength + start;
-
-	if (start >= strlength)
-		start = len - start;
-
-	result = ft_calloc((len + 1) * sizeof(char));
-	
-	size_t i;
-	i = 0;
-	while(i < len)
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	return (result);
-	
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_strdup(""));
+	else if (len > slen - start)
+		len = slen - start;
+	subset = malloc(sizeof(char) * (len + 1));
+	if (!subset)
+		return (NULL);
+	ft_memcpy(subset, s + start, len);
+	subset[len] = '\0';
+	return (subset);
 }
 
 // #include <stdio.h>
-// int main() {
-//     char str[] = "hwllo ,world Ömer Faruk Göregen";
-// 	printf("%s", ft_substr(str, 0, 10));
+
+// int	main(void)
+// {
+// 	char	str[] = "Hello world it's me Lavinya";
+// 	printf("%s", ft_substr(str, 10, -10));
 // }

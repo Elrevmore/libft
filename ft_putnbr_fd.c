@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merol <merol@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 17:07:28 by merol             #+#    #+#             */
-/*   Updated: 2024/11/13 16:05:27 by merol            ###   ########.fr       */
+/*   Created: 2024/11/06 18:11:43 by merol             #+#    #+#             */
+/*   Updated: 2024/11/06 18:29:24 by merol            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	size_t	j;
-	size_t	dlen;
-	size_t	slen;
-
-	i = 0;
-	j = 0;
-	while (dst[j] != '\0')
+	if(n == -2147483648)
 	{
-		j++;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(214,fd);
+		ft_putnbr_fd(7483648, fd);
 	}
-	dlen = j;
-	slen = ft_strlen(src);
-	if (dstsize == 0 || dstsize <= dlen)
-		return (slen + dstsize);
-	while (src[i] != '\0' && i < dstsize - dlen - 1)
+	else if( n < 0)
 	{
-		dst[j] = src[i];
-		i++;
-		j++;
+		ft_putchar_fd('-',fd);
+		ft_putnbr_fd(-n,fd);
 	}
-	dst[j] = '\0';
-	return (dlen + slen);
+	else if(n > 9)
+	{
+		ft_putnbr_fd(n/10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + '0', fd);
 }

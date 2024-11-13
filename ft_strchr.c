@@ -6,7 +6,7 @@
 /*   By: merol <merol@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:49:08 by merol             #+#    #+#             */
-/*   Updated: 2024/10/21 15:50:14 by merol            ###   ########.fr       */
+/*   Updated: 2024/11/13 18:51:32 by merol            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
+	if ((char) c == '\0')
 	{
 		return ((char *)s);
 	}
